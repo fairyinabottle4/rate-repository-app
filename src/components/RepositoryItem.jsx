@@ -1,10 +1,22 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import Text from './Text'
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  text: {
+    color: 'blue',
+    fontSize: 24,
+    fontWeight: '700',
+  },
+});
 
 const RepositoryItem = ({ repo }) => (
-  <View>
-    <Text>Full name: {repo.fullName}</Text>
-    <Text>Description: {repo.description}</Text>
+  <View style={styles.containers}>
+    <Text style={styles.text}>Full name: {repo.fullName}</Text>
+    <Text fontWeight="bold">Description: {repo.description}</Text>
     <Text>Language: {repo.language}</Text>
     <Text>Forks: {repo.forksCount}</Text>
     <Text>Stars: {repo.stargazersCount}</Text>
