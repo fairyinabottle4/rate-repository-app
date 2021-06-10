@@ -7,17 +7,9 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   errorBox: {
-    position: 'absolute',
-    height: 50,
-    backgroundColor: 'white',
     borderColor: '#d73a4a',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10
   },
   textBox: {
-    position: 'absolute',
-    height: 50,
     backgroundColor: 'white',
     borderColor: '#111111',
     borderWidth: 1,
@@ -35,9 +27,8 @@ const FormikTextInput = ({ name, ...props }) => {
   return (
     <>
       <TextInput
-        position='relative'
         placeholder={name}
-        style={showError ? styles.errorBox : styles.textBox}
+        style={[styles.textBox, showError && styles.errorBox]}
         onChangeText={value => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}

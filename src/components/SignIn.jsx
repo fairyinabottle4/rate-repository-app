@@ -27,8 +27,9 @@ const SignIn = () => {
         return (
           <View style={{
             paddingHorizontal: 12,
+            paddingVertical: 20,
             height: 200,
-            justifyContent: 'space-evenly',
+            justifyContent: 'space-around',
             backgroundColor: 'white',
           }}>
             <FormikTextInput name='username' placeholder='Username' />
