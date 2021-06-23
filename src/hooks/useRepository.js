@@ -3,32 +3,51 @@ import { useQuery } from '@apollo/client';
 import { ALL_REPOS } from '../graphql/queries';
 
 const useRepositories = () => {
-  const [repositories, setRepositories] = useState();
-  const [loading, setLoading] = useState(false);
+//this is api way of doing
 
+  // const [repositories, setRepositories] = useState();
+  // const [loading, setLoading] = useState(false);
 
-  const fetchRepositories = async () => {
-    setLoading(true);
+  // const result = useQuery(ALL_REPOS, {
+  //   fetchPolicy: 'cache-and-network',
+  // });
 
-    // //this is the version that uses the fetch API
-    // const response = await fetch('http://172.31.7.241:5000/api/repositories');
-    const response = useQuery(ALL_REPOS, {
-      fetchPolicy: 'cache-and-network',
-    });
-    console.log(response);
+  // useEffect(() => {
+  //   if (result.data) {
+  //     setRepositories(result.data.repositories.edges.map(({ node }) => node));
+  //   }
+  // },[result]);
 
-    const json = await response.json();
+  // const fetchRepositories = async () => {
+  //   setLoading(true);
 
-    setLoading(false);
-    setRepositories(json);
-  };
+  //   // //this is the version that uses the fetch API
+  //   // const response = await fetch('http://172.31.7.241:5000/api/repositories');
+  //   console.log(response);
 
-  useEffect(() => {
-    fetchRepositories();
-  }, []);
+  //   const json = await response.json();
+
+  //   setLoading(false);
+  //   setRepositories(json);
+  // };
+
+  // useEffect(() => {
+  //   fetchRepositories();
+  // }, []);
+
+//this is graphql way of doing
+  const { data, loading, refetch } = useQuery(ALL_REPOS, {
+    fetchPolicy: 'cache-and-network',
+  });
+
+  let repositories = [];
+
+  if (data) {
+    repositories = data.repositories;
+  }
 
   console.log(repositories);
-  return { repositories, loading, refetch: fetchRepositories };
+  return { repositories, loading, refetch };
 };
 
 export default useRepositories;
