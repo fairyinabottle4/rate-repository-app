@@ -27,4 +27,4 @@ export const CHECK_AUTHORIZED = gql`
       username
     }
   }
-`
+`;

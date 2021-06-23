@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from "react-router-native";
 import { useQuery } from '@apollo/client';
 import { CHECK_AUTHORIZED } from '../graphql/queries';
