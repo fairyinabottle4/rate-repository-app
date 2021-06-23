@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native'
-import { Formik } from 'formik'
+import { View, TouchableWithoutFeedback } from 'react-native';
+import { Formik } from 'formik';
 import Text from './Text';
-import FormikTextInput from './FormikTextInput'
+import FormikTextInput from './FormikTextInput';
 import * as yup from 'yup';
 
 const SignIn = () => {
@@ -47,7 +47,7 @@ const SignIn = () => {
               >Sign in</Text>
             </TouchableWithoutFeedback>
           </View>  
-        )
+        );
       }}
     </Formik>
   ); 
