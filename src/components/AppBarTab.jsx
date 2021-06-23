@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-native";
+import { useQuery } from '@apollo/client';
+import { CHECK_AUTHORIZED } from '../graphql/queries';
+import { useApolloClient } from '@apollo/client';
 
 import { StyleSheet, View, Pressable } from 'react-native';
 
@@ -7,11 +10,13 @@ import Text from './Text';
 
 import theme from '../theme';
 
+import useAuthStorage from '../hooks/useAuthStorage';
+
 const SignInPage = ({ appBarTabStyles }) => {
   const history = useHistory();
   const handleClick = () => {
-    history.push('/signin')
-  }
+    history.push('/signin');
+  };
 
   return (
     <Pressable onPress={handleClick}>
@@ -19,14 +24,14 @@ const SignInPage = ({ appBarTabStyles }) => {
         Sign in
       </Text>
     </Pressable>
-  )
-}
+  );
+};
 
 const Repositories = ({ appBarTabStyles }) => {
   const history = useHistory();
   const handleClick = () => {
-    history.push('/')
-  }
+    history.push('/');
+  };
 
   return (
     <Pressable onPress={handleClick}>
@@ -34,8 +39,28 @@ const Repositories = ({ appBarTabStyles }) => {
         Repositories
       </Text>
     </Pressable>
-  )
-}
+  );
+};
+
+const SignOut = ({ appBarTabStyles }) => {
+  const authStorage = useAuthStorage();
+  const apolloClient = useApolloClient();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    authStorage.removeAccessToken();
+    apolloClient.resetStore();
+    history.push('/signin');
+  };
+
+  return (
+    <Pressable onPress={handleLogout}>
+      <Text style={appBarTabStyles}>
+        Sign out
+      </Text>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   text: {
@@ -49,16 +74,21 @@ const styles = StyleSheet.create({
 });
 
 const AppBarTab = ({ isActive, onPress = () => null, style, ...props}) => {
+
+  const { data } = useQuery(CHECK_AUTHORIZED);
+
   const appBarTabStyles = [
     styles.text,
     isActive && styles.active,
     style
   ];
-
   return (
     <View style={{flexDirection: 'row'}}> 
       <Repositories appBarTabStyles={appBarTabStyles} />
-      <SignInPage appBarTabStyles={appBarTabStyles} />
+      {data?.authorizedUser ? 
+      <SignOut appBarTabStyles={appBarTabStyles} /> 
+      : <SignInPage appBarTabStyles={appBarTabStyles} />}
+      
     </View>
   );
 

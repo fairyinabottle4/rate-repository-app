@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text } from 'react-native';
-import { Link, useLocation } from 'react-router-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { useQuery } from '@apollo/client';
 import Constants from 'expo-constants';
 import AppBarTab from './AppBarTab';
-import theme from '../theme'
+import theme from '../theme';
+import { CHECK_AUTHORIZED } from '../graphql/queries';
+import { useEffect } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,8 +15,6 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  // const { pathname } = useLocation();
-  // console.log(pathname);
   return (
   <View style={styles.container}>
     <ScrollView horizontal>
