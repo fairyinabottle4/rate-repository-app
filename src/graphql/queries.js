@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { REPOSITORY_INFO } from "./fragments";
 
 export const ALL_REPOS = gql`
   query {
@@ -32,16 +33,22 @@ export const CHECK_AUTHORIZED = gql`
 export const GET_REPOSITORY = gql`
   query Repository($id: ID!) {
     repository(id: $id) {
-      id
-      fullName
-      url
-      reviewCount
-      ratingAverage
-      stargazersCount
-      description
-      language
-      ownerAvatarUrl
-      forksCount
+      ...RepositoryInfo
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
+
     }
-  }
+  }${REPOSITORY_INFO}
 `;
