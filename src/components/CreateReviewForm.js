@@ -34,8 +34,7 @@ const CreateReviewForm = ({ createReview }) => (
       <FormikTextInput name="text" placeholder="Review" multiline />
     </View>
     <View style={styles.btnContainer}>
-      <TouchableWithoutFeedback
-       onPress={createReview}>
+      <TouchableWithoutFeedback onPress={createReview}>
          <Text
           color="textLight"
           fontWeight='bold'

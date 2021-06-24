@@ -27,6 +27,22 @@ const SignInPage = ({ appBarTabStyles }) => {
   );
 };
 
+const SignUpPage = ({ appBarTabStyles }) => {
+  const history = useHistory();
+  const handleClick = () => {
+    console.log('sign up page');
+    history.push('/signup');
+  };
+
+  return (
+    <Pressable onPress={handleClick}>
+      <Text style={appBarTabStyles}>
+        Sign up
+      </Text>
+    </Pressable>
+  );
+};
+
 const Repositories = ({ appBarTabStyles }) => {
   const history = useHistory();
   const handleClick = () => {
@@ -107,7 +123,12 @@ const AppBarTab = ({ isActive, onPress = () => null, style, ...props}) => {
         <SignOut appBarTabStyles={appBarTabStyles} /> 
         <CreateReview appBarTabStyles={appBarTabStyles} />
       </>  
-      : <SignInPage appBarTabStyles={appBarTabStyles} />}
+      : 
+      <>
+        <SignInPage appBarTabStyles={appBarTabStyles} />
+        <SignUpPage appBarTabStyles={appBarTabStyles} />
+      </>
+      }
       
     </View>
   );
