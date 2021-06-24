@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { ALL_REPOS } from '../graphql/queries';
 
@@ -35,21 +34,33 @@ import { ALL_REPOS } from '../graphql/queries';
   // }, []);
 
 //this is graphql way of doing
-const useRepositories = () => {
-  const [repositories, setRepositories] = useState();
+const useRepositories = (orderBy, orderDirection) => {
+  if (orderBy && orderDirection) {
+    const { data, error, loading, refetch: fetchRepositories } = useQuery(
+      ALL_REPOS,
+      {
+        fetchPolicy: "cache-and-network",
+        variables: {
+          orderBy,
+          orderDirection,
+        },
+      }
+    );
+    const repositories = data?.repositories;
 
-  const { data, loading, refetch } = useQuery(ALL_REPOS, {
-    fetchPolicy: 'cache-and-network',
-  });
+    return { repositories, error, loading, refetch: fetchRepositories };
+  } else {
+    const { data, error, loading, refetch: fetchRepositories } = useQuery(
+      ALL_REPOS,
+      {
+        fetchPolicy: "cache-and-network",
+      }
+    );
 
-  useEffect(() => {
-    if (data) {
-      setRepositories(data.repositories);
-    }
-  }, [data]);
+    const repositories = data?.repositories;
 
-  // console.log(repositories);
-  return { repositories, loading, refetch };
+    return { repositories, error, loading, refetch: fetchRepositories };
+  }
 };
 
 export default useRepositories;

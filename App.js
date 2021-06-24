@@ -10,13 +10,16 @@ const apolloClient = createApolloClient(authStorage);
 //we want to give the useSignIn hook access to the token storage instance
 import AuthStorageContext from './src/components/contexts/AuthStorageContext';
 // console.log(Constants.manifest);
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const App = () => {
   return (
     <NativeRouter>
       <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
-            <Main />
+            <PaperProvider>
+              <Main />
+            </PaperProvider>
           </AuthStorageContext.Provider>
       </ApolloProvider>
     </NativeRouter>
