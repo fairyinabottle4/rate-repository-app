@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Text from './Text';
 import theme from '../theme';
+import * as Linking from "expo-linking";
 
 const styles = StyleSheet.create({
   backGround: {
@@ -57,7 +58,17 @@ const styles = StyleSheet.create({
   bodyText: {
     paddingVertical: 4,
     color: theme.colors.secondary,
-  }
+  },
+  btnContainer: {
+    display: "flex",
+    backgroundColor: theme.colors.primary,
+    borderRadius: 5,
+  },
+  githubBtn: {
+    padding: 15,
+    alignSelf: "center",
+    color: 'white'
+  },
 
 });
 
@@ -65,7 +76,10 @@ const formatNumbers = (num) => {
   return num > 999 ? (num / 1000).toFixed(1) + "k" : num;
 };
 
-const RepositoryDisplay = ({ repo }) => {
+const RepositoryDisplay = ({ repo, isDetail }) => {
+  const openGithub = () => {
+    Linking.openURL(repo.url);
+  };
 
   return (  
     <View style={styles.backGround}>
@@ -101,6 +115,20 @@ const RepositoryDisplay = ({ repo }) => {
             <Text>Rating</Text>
           </View>
         </View>
+
+        {isDetail && (
+          <View style={styles.btnContainer}>
+            <TouchableWithoutFeedback onPress={openGithub}>
+              <Text
+                color="textLight"
+                fontWeight="bold"
+                style={styles.githubBtn}
+              >
+                Open in GitHub
+              </Text>
+            </TouchableWithoutFeedback>
+          </View>
+        )}
       </View>
     </View>
   );

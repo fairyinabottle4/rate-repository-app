@@ -14,7 +14,7 @@ const RepositoryPage = () => {
   if (loading) return null;
   console.log(data);
   return (
-    <RepositoryDisplay repo={data.repository} />
+    <RepositoryDisplay repo={data.repository} isDetail={true} />
   );
 };
 

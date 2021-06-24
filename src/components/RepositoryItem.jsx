@@ -8,7 +8,7 @@ const RepositoryItem = ({ repo }) => {
 
   return (
     <Link to={`/repository/${repo.id}`} component={TouchableOpacity}>
-      <RepositoryDisplay repo={repo} />
+      <RepositoryDisplay repo={repo} isDetail={false} />
     </Link>
   );
 };
