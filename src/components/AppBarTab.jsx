@@ -62,6 +62,22 @@ const SignOut = ({ appBarTabStyles }) => {
   );
 };
 
+const CreateReview = ({ appBarTabStyles }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/create-review');
+  };
+
+  return (
+    <Pressable onPress={handleClick} >
+      <Text style={appBarTabStyles}>
+        Create Review
+      </Text>
+    </Pressable>
+  );
+};
+
 const styles = StyleSheet.create({
   text: {
     fontSize: theme.fontSizes.subheading,
@@ -82,11 +98,15 @@ const AppBarTab = ({ isActive, onPress = () => null, style, ...props}) => {
     isActive && styles.active,
     style
   ];
+  // console.log(data);
   return (
     <View style={{flexDirection: 'row'}}> 
       <Repositories appBarTabStyles={appBarTabStyles} />
       {data?.authorizedUser ? 
-      <SignOut appBarTabStyles={appBarTabStyles} /> 
+      <>
+        <SignOut appBarTabStyles={appBarTabStyles} /> 
+        <CreateReview appBarTabStyles={appBarTabStyles} />
+      </>  
       : <SignInPage appBarTabStyles={appBarTabStyles} />}
       
     </View>

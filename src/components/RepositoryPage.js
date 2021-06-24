@@ -20,19 +20,18 @@ const RepositoryPage = () => {
   const ItemSeparator = () => <View style={styles.separator} />;
   
   const { id } = useParams();
-  console.log(id);
   const { loading, data } = useQuery(GET_REPOSITORY, {
+    fetchPolicy: 'cache-and-network',
     variables: { id },
   });
   
   if (loading) return null;
-  console.log(data);
+  // console.log(data);
   const repository = data.repository;
   const reviews = data.repository.reviews.edges;
 
   const renderItem = ({ item }) => {
-    console.log('item');
-    console.log(item);
+    // console.log('item');
     return (
       <ReviewItem review={item} />
     );
