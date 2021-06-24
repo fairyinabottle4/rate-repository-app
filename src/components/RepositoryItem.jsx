@@ -1,7 +1,7 @@
-import React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
-import Text from './Text'
-import theme from '../theme'
+import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
+import Text from './Text';
+import theme from '../theme';
 
 const styles = StyleSheet.create({
   backGround: {
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 13,
-    justifyContent: 'space-between',
   },
   flexBottomBox: {
     //this contains the numerical figure and the title beneath
@@ -66,8 +65,8 @@ const styles = StyleSheet.create({
 });
 
 const roundNum = (num) => {
-  return (num/1000).toFixed(1)
-}
+  return (num/1000).toFixed(1);
+};
 
 const RepositoryItem = ({ repo }) => (
   <View style={styles.backGround}>
@@ -78,35 +77,35 @@ const RepositoryItem = ({ repo }) => (
           </Image>
         </View>
         <View style={styles.flexTopRight}>
-          <Text style={styles.subheading}>{repo.fullName}</Text>
-          <Text style={styles.bodyText}>{repo.description}</Text>
-          <Text style={styles.language}>{repo.language}</Text>
+          <Text style={styles.subheading} testID='fullname'>{repo.fullName}</Text>
+          <Text style={styles.bodyText} testID='description'>{repo.description}</Text>
+          <Text style={styles.language} testID='language'>{repo.language}</Text>
         </View>
       </View>
 
 
       <View style={styles.flexBottomArea}>
         <View style={styles.flexBottomBox}>
-          <Text style={styles.subheading}>{roundNum(repo.stargazersCount)}k</Text>
+          <Text style={styles.subheading} testID="stars">{roundNum(repo.stargazersCount)}k</Text>
           <Text>Stars</Text>
         </View>
         <View style={styles.flexBottomBox}>
-          <Text style={styles.subheading}>{roundNum(repo.forksCount)}k</Text>
+          <Text style={styles.subheading} testID='forks'>{roundNum(repo.forksCount)}k</Text>
           <Text>Forks</Text>
         </View>
         <View style={styles.flexBottomBox}>
-          <Text style={styles.subheading}>{repo.reviewCount}</Text>
+          <Text style={styles.subheading} testID='reviews'>{repo.reviewCount}</Text>
           <Text>Reviews</Text>
         </View>
         <View style={styles.flexBottomBox}>
-          <Text style={styles.subheading}>{repo.ratingAverage}</Text>
+          <Text style={styles.subheading} testID='ratings'>{repo.ratingAverage}</Text>
           <Text>Rating</Text>
         </View>
       </View>
     </View>
 
   </View>
-)
+);
 
-export default RepositoryItem
+export default RepositoryItem;
 
