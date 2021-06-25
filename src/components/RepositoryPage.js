@@ -20,9 +20,9 @@ const RepositoryPage = () => {
   const ItemSeparator = () => <View style={styles.separator} />;
   
   const { id } = useParams();
-  const { loading, data } = useQuery(GET_REPOSITORY, {
+  const { loading, data, fetchMore } = useQuery(GET_REPOSITORY, {
     fetchPolicy: 'cache-and-network',
-    variables: { id },
+    variables: { id, first: 4 },
   });
   
   if (loading) return null;
@@ -37,6 +37,44 @@ const RepositoryPage = () => {
     );
   };
 
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data && data.repository.reviews.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      query: GET_REPOSITORY,
+      variables: {
+        after: data.repository.reviews.pageInfo.endCursor,
+        id,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const nextResult = {
+          repository: {
+            ...fetchMoreResult.repository,
+            reviews: {
+              ...fetchMoreResult.repository.reviews,
+              edges: [
+                ...previousResult.repository.reviews.edges,
+                ...fetchMoreResult.repository.reviews.edges,
+              ],
+            },
+          },
+        };
+        return nextResult;
+      },
+    });
+  };
+
+
+  const onEndReach = () => {
+    console.log('end reached too');
+    handleFetchMore();
+  };
+
 
   return (
     <View style={styles.view}>
@@ -46,6 +84,8 @@ const RepositoryPage = () => {
         keyExtractor={({ node: { id } }) => id}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}  
       />
     </View>
   );
