@@ -10,7 +10,11 @@ const RepositoryList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
-  const { repositories } = useRepositories(variables);
+  const { repositories, fetchMore } = useRepositories({
+    //set at 5 purely to demonstrate that the infinite scrolling works
+    first: 5,
+    ...variables,
+  });
 
   const onChangeSearch = (query) => setSearchQuery(query);
   const onPress = (variables, sortBy) => {
@@ -22,6 +26,11 @@ const RepositoryList = () => {
     setVariables({ searchKeyword: debouncedSearchQuery });
   }, [debouncedSearchQuery]);
 
+  const onEndReached = () => {
+    console.log('end reached');
+    fetchMore();
+  };
+
   return (
     <RepositoryListContainer
       sort={sort}
@@ -29,6 +38,7 @@ const RepositoryList = () => {
       repositories={repositories}
       searchQuery={searchQuery}
       onChangeSearch={onChangeSearch}
+      onEndReached={onEndReached}
     />
   );
 };

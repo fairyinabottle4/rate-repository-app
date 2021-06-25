@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
 
 
 const ReviewItem = ({ review }) => {
-  console.log('not');
-  console.log(review);
+  // console.log('not');
+  // console.log(review);
   return (
     <View style={styles.reviewItemContainer}>
       <View style={styles.ratingCircle}>
