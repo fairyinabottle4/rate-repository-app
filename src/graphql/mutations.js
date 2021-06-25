@@ -31,3 +31,10 @@ export const SIGN_UP = gql`
     }
   }
 `;
+
+
+export const DELETE_REVIEW = gql`
+  mutation DeleteRevies($id: ID!) {
+    deleteReview(id: $id)
+  }
+`;

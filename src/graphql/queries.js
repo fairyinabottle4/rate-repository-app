@@ -59,6 +59,7 @@ export const CHECK_AUTHORIZED = gql`
               username
             }
             repository {
+              id
               fullName
             }
           }
