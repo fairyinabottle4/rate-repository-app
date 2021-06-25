@@ -34,33 +34,13 @@ import { ALL_REPOS } from '../graphql/queries';
   // }, []);
 
 //this is graphql way of doing
-const useRepositories = (orderBy, orderDirection) => {
-  if (orderBy && orderDirection) {
-    const { data, error, loading, refetch: fetchRepositories } = useQuery(
-      ALL_REPOS,
-      {
-        fetchPolicy: "cache-and-network",
-        variables: {
-          orderBy,
-          orderDirection,
-        },
-      }
-    );
-    const repositories = data?.repositories;
-
-    return { repositories, error, loading, refetch: fetchRepositories };
-  } else {
-    const { data, error, loading, refetch: fetchRepositories } = useQuery(
-      ALL_REPOS,
-      {
-        fetchPolicy: "cache-and-network",
-      }
-    );
-
-    const repositories = data?.repositories;
-
-    return { repositories, error, loading, refetch: fetchRepositories };
-  }
+const useRepositories = (variables) => {
+  const { data, error, loading, refetch: fetchRepositories } = useQuery(ALL_REPOS, {
+      fetchPolicy: "cache-and-network",
+      variables,
+    }
+  );
+  const repositories = data?.repositories;
+  return { repositories, error, loading, refetch: fetchRepositories };
 };
-
 export default useRepositories;

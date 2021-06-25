@@ -1,36 +1,41 @@
 import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import RepositoryItem from './RepositoryItem';
-import Dropdown from "./Dropdown";
+import RepositoryListHeader from './RepositoryListHeader';
 
-const RepositoryListContainer = ({ repositories, onPress, sort }) => {
-  
-  // Get the nodes from the edges array
-  const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
-    : [];
+class RepositoryListContainer extends React.Component {
+  renderHeader = () => {
+    const { searchQuery, onChangeSearch, onPress, sort } = this.props;
 
-  const ItemSeparator = () => <View style={styles.separator} />;
-
-  const renderItem = ({ item }) => {
     return (
-      <RepositoryItem repo={item} />
+      <RepositoryListHeader
+        searchQuery={searchQuery}
+        onChangeSearch={onChangeSearch}
+        onPress={onPress}
+        sort={sort}
+      />
     );
   };
 
-  return (
-    <FlatList
-      testID='overallList'
-      data={repositoryNodes}
-      keyExtractor={(item) => item.id}
-      ListHeaderComponent={() => <Dropdown onPress={onPress} sort={sort} />}
-      ListHeaderComponentStyle={styles.listHeader}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={renderItem}
-    />
-  );
-  
-};
+  render() {
+    const { repositories } = this.props;
+    const repositoryNodes = repositories
+      ? repositories?.edges.map((edge) => edge.node)
+      : [];
+
+    return (
+      <FlatList
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={this.renderHeader}
+        ListHeaderComponentStyle={styles.listHeader}
+      />
+    );
+  }
+}
+
 
 const styles = StyleSheet.create({
   separator: {
@@ -40,6 +45,15 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
 });
+
+const ItemSeparator = () => <View style={styles.separator} />;
+
+const renderItem = ({ item }) => {
+  return (
+    <RepositoryItem repo={item} />
+  );
+};
+
 
 
 export default RepositoryListContainer;
