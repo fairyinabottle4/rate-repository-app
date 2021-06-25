@@ -94,6 +94,23 @@ const CreateReview = ({ appBarTabStyles }) => {
   );
 };
 
+const MyReviews = ({ appBarTabStyles }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    console.log('myreviews');
+    history.push('/user-reviews');
+  };
+
+  return (
+    <Pressable onPress={handleClick}>
+      <Text style={appBarTabStyles}>
+        My Reviews
+      </Text>
+    </Pressable>
+  );
+};
+
 const styles = StyleSheet.create({
   text: {
     fontSize: theme.fontSizes.subheading,
@@ -122,6 +139,7 @@ const AppBarTab = ({ isActive, onPress = () => null, style, ...props}) => {
       <>
         <SignOut appBarTabStyles={appBarTabStyles} /> 
         <CreateReview appBarTabStyles={appBarTabStyles} />
+        <MyReviews appBarTabStyles={appBarTabStyles} />
       </>  
       : 
       <>

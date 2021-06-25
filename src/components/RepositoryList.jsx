@@ -27,7 +27,6 @@ const RepositoryList = () => {
   }, [debouncedSearchQuery]);
 
   const onEndReached = () => {
-    console.log('end reached');
     fetchMore();
   };
 

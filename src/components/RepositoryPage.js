@@ -71,7 +71,6 @@ const RepositoryPage = () => {
 
 
   const onEndReach = () => {
-    console.log('end reached too');
     handleFetchMore();
   };
 

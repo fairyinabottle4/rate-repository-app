@@ -2,8 +2,6 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { format, parseISO } from "date-fns";
 import theme from "../theme";
-// import BodyText from "../BodyText";
-// import Subheading from "../Subheading";
 
 const width = 50;
 const height = width;
@@ -49,8 +47,8 @@ const styles = StyleSheet.create({
 
 
 const ReviewItem = ({ review }) => {
-  // console.log('not');
-  // console.log(review);
+  console.log('not');
+  console.log(review);
   return (
     <View style={styles.reviewItemContainer}>
       <View style={styles.ratingCircle}>
