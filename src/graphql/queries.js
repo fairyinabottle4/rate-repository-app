@@ -36,7 +36,7 @@ export const CHECK_AUTHORIZED = gql`
   query AuthorizedUser(
     $first: Int
     $after: String
-    $includeReviews: Boolean = true
+    $includeReviews: Boolean = false
   ) {
     authorizedUser {
       id
