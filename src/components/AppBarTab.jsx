@@ -30,7 +30,6 @@ const SignInPage = ({ appBarTabStyles }) => {
 const SignUpPage = ({ appBarTabStyles }) => {
   const history = useHistory();
   const handleClick = () => {
-    console.log('sign up page');
     history.push('/signup');
   };
 
@@ -98,7 +97,6 @@ const MyReviews = ({ appBarTabStyles }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    console.log('myreviews');
     history.push('/user-reviews');
   };
 
