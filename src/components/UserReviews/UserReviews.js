@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     alignSelf: "center",
-    color: 'white',
-    fontWeight: 'bold'
+    color: theme.colors.whiteText,
+    fontWeight: theme.fontWeights.bold
   },
   separator: {
     height: 10,

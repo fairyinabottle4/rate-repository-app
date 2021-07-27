@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
   reviewBtn: {
     padding: 15,
     alignSelf: "center",
-    color: 'white'
+    color: theme.colors.whiteText,
+    fontWeight: theme.fontWeights.bold
   }
 });
 
@@ -36,8 +37,6 @@ const CreateReviewForm = ({ createReview }) => (
     <View style={styles.btnContainer}>
       <TouchableWithoutFeedback onPress={createReview}>
          <Text
-          color="textLight"
-          fontWeight='bold'
           style={styles.reviewBtn}
          >
           Create a Review
