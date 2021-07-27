@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
-import useRepositories from '../hooks/useRepository';
+import useRepositories from '../../hooks/useRepository';
 import RepositoryListContainer from './RepositoryListContainer';
 
 

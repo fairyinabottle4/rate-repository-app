@@ -2,7 +2,7 @@ import * as React from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { Divider, Menu } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
-import theme from "../theme";
+import theme from "../../theme";
 
 const { width } = Dimensions.get("window");
 const { height } = Dimensions.get("window");

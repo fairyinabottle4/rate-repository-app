@@ -1,16 +1,16 @@
 import React from 'react';
 import { useHistory } from "react-router-native";
 import { useQuery } from '@apollo/client';
-import { CHECK_AUTHORIZED } from '../graphql/queries';
+import { CHECK_AUTHORIZED } from '../../graphql/queries';
 import { useApolloClient } from '@apollo/client';
 
 import { StyleSheet, View, Pressable } from 'react-native';
 
-import Text from './Text';
+import Text from '../Text';
 
-import theme from '../theme';
+import theme from '../../theme';
 
-import useAuthStorage from '../hooks/useAuthStorage';
+import useAuthStorage from '../../hooks/useAuthStorage';
 
 const SignInPage = ({ appBarTabStyles }) => {
   const history = useHistory();

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableWithoutFeedback, Text } from "react-native";
-import FormikTextInput from "./FormikTextInput";
-import theme from '../theme';
+import FormikTextInput from "../FormikTextInput";
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   textInputContainer: {

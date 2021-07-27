@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import Text from './Text';
-import theme from '../theme';
+import Text from '../Text';
+import theme from '../../theme';
 import * as Linking from "expo-linking";
 
 const styles = StyleSheet.create({

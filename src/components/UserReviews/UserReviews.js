@@ -1,11 +1,11 @@
 import { useQuery, useMutation } from "@apollo/client";
 import React from "react";
 import { FlatList, View, StyleSheet, Alert, TouchableWithoutFeedback, Text } from "react-native";
-import { CHECK_AUTHORIZED } from "../graphql/queries";
-import { DELETE_REVIEW } from '../graphql/mutations';
+import { CHECK_AUTHORIZED } from "../../graphql/queries";
+import { DELETE_REVIEW } from '../../graphql/mutations';
 import ReviewItem from "./ReviewItem";
 import { Link } from "react-router-native";
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   rowContainer: {

@@ -1,6 +1,6 @@
 import React from "react";
 import Dropdown from "./Dropdown";
-import Searchbar from "./Searchbar";
+import Searchbar from "../Searchbar";
 
 const RepositoryListHeader = ({
   searchQuery,

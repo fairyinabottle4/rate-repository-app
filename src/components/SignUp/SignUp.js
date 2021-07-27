@@ -4,9 +4,9 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useHistory } from "react-router-native";
 import * as yup from "yup";
-import { SIGN_UP } from "../graphql/mutations";
-import  useSignIn  from "../hooks/useSignIn";
-import theme from "../theme";
+import { SIGN_UP } from "../../graphql/mutations";
+import  useSignIn  from "../../hooks/useSignIn";
+import theme from "../../theme";
 import SignUpForm from "./SignUpForm";
 
 const styles = StyleSheet.create({

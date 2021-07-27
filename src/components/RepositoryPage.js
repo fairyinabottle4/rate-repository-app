@@ -3,8 +3,8 @@ import React from "react";
 import { useParams } from "react-router-native";
 import { StyleSheet, View, FlatList } from "react-native";
 import { GET_REPOSITORY } from "../graphql/queries";
-import RepositoryDisplay from "./RepositoryDisplay";
-import ReviewItem from "./ReviewItem";
+import RepositoryDisplay from "./RepositoryList/RepositoryDisplay";
+import ReviewItem from "./UserReviews/ReviewItem";
 
 const RepositoryPage = () => {
 

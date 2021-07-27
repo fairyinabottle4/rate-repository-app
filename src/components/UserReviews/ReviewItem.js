@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { format, parseISO } from "date-fns";
-import theme from "../theme";
+import theme from "../../theme";
 
 const width = 50;
 const height = width;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
 import { Formik } from 'formik';
-import Text from './Text';
-import FormikTextInput from './FormikTextInput';
+import Text from '../Text';
+import FormikTextInput from '../FormikTextInput';
 
 const SignInContainer = ({ initialValues, onSubmit, validationSchema }) => {
   

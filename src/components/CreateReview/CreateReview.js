@@ -4,8 +4,8 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useHistory } from "react-router-native";
 import * as yup from "yup";
-import { CREATE_REVIEW } from "../graphql/mutations";
-import theme from "../theme";
+import { CREATE_REVIEW } from "../../graphql/mutations";
+import theme from "../../theme";
 import CreateReviewForm from "./CreateReviewForm";
 
 const styles = StyleSheet.create({
