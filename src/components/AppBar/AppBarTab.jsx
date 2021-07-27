@@ -1,113 +1,16 @@
 import React from 'react';
-import { useHistory } from "react-router-native";
 import { useQuery } from '@apollo/client';
 import { CHECK_AUTHORIZED } from '../../graphql/queries';
-import { useApolloClient } from '@apollo/client';
 
-import { StyleSheet, View, Pressable } from 'react-native';
-
-import Text from '../Text';
+import { StyleSheet, View } from 'react-native';
+import CreateReview from './CreateReviewTab';
+import SignInPage from './SignInPageTab';
+import SignUpPage from './SignUpPageTab';
+import Repositories from './RepositoriesTab';
+import MyReviews from './MyReviewsTab';
+import SignOut from './SignOutTab';
 
 import theme from '../../theme';
-
-import useAuthStorage from '../../hooks/useAuthStorage';
-
-const SignInPage = ({ appBarTabStyles }) => {
-  const history = useHistory();
-  const handleClick = () => {
-    history.push('/signin');
-  };
-
-  return (
-    <Pressable onPress={handleClick}>
-      <Text style={appBarTabStyles}>
-        Sign in
-      </Text>
-    </Pressable>
-  );
-};
-
-const SignUpPage = ({ appBarTabStyles }) => {
-  const history = useHistory();
-  const handleClick = () => {
-    history.push('/signup');
-  };
-
-  return (
-    <Pressable onPress={handleClick}>
-      <Text style={appBarTabStyles}>
-        Sign up
-      </Text>
-    </Pressable>
-  );
-};
-
-const Repositories = ({ appBarTabStyles }) => {
-  const history = useHistory();
-  const handleClick = () => {
-    history.push('/');
-  };
-
-  return (
-    <Pressable onPress={handleClick}>
-      <Text style={appBarTabStyles}>
-        Repositories
-      </Text>
-    </Pressable>
-  );
-};
-
-const SignOut = ({ appBarTabStyles }) => {
-  const authStorage = useAuthStorage();
-  const apolloClient = useApolloClient();
-  const history = useHistory();
-
-  const handleLogout = () => {
-    authStorage.removeAccessToken();
-    apolloClient.resetStore();
-    history.push('/signin');
-  };
-
-  return (
-    <Pressable onPress={handleLogout}>
-      <Text style={appBarTabStyles}>
-        Sign out
-      </Text>
-    </Pressable>
-  );
-};
-
-const CreateReview = ({ appBarTabStyles }) => {
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push('/create-review');
-  };
-
-  return (
-    <Pressable onPress={handleClick} >
-      <Text style={appBarTabStyles}>
-        Create Review
-      </Text>
-    </Pressable>
-  );
-};
-
-const MyReviews = ({ appBarTabStyles }) => {
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push('/user-reviews');
-  };
-
-  return (
-    <Pressable onPress={handleClick}>
-      <Text style={appBarTabStyles}>
-        My Reviews
-      </Text>
-    </Pressable>
-  );
-};
 
 const styles = StyleSheet.create({
   text: {
